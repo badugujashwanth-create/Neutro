@@ -1,6 +1,8 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage.tsx'
 import { ReplayPage } from './pages/ReplayPage.tsx'
+import { DemoCheckoutPage } from './pages/DemoCheckoutPage.tsx'
+import { TaxGuardPage } from './pages/TaxGuardPage.tsx'
 
 function App() {
   return (
@@ -10,9 +12,15 @@ function App() {
           <Link to="/" className="text-lg font-semibold tracking-wide text-indigo-300">
             NEXUS NeuroOS
           </Link>
-          <nav className="text-sm text-slate-300">
+          <nav className="flex flex-wrap items-center gap-1 text-sm text-slate-300">
             <Link className="rounded-md px-3 py-1 hover:bg-white/5" to="/">
               Session Replay
+            </Link>
+            <Link className="rounded-md px-3 py-1 hover:bg-white/5" to="/demo/checkout">
+              Demo Checkout
+            </Link>
+            <Link className="rounded-md px-3 py-1 hover:bg-white/5" to="/tax-guard">
+              Tax Guard Logs
             </Link>
           </nav>
         </div>
@@ -21,6 +29,8 @@ function App() {
       <main className="mx-auto w-full max-w-6xl px-6 py-8">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/demo/checkout" element={<DemoCheckoutPage />} />
+          <Route path="/tax-guard" element={<TaxGuardPage />} />
           <Route path="/replay/:id" element={<ReplayPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -1,35 +1,41 @@
-# nexus-neuroos (Replay-Only)
+# Neutro (Focused Demo Build)
 
-Clean rebuild focused on one feature only: **Session Replay**.
+Canonical runnable app: `apps/web`
 
-## What It Does
-- Records in-app DOM activity (clicks, typing, scrolling) using `rrweb`
-- Saves each recording locally as a replay bundle (`IndexedDB`, with `localStorage` fallback)
-- Replays sessions with:
-  - play/pause
-  - timeline scrubber
-  - speed control (`0.5x`, `1x`, `2x`)
-- Lists sessions with delete and clear-all actions
+This repo is intentionally scoped to three demo features only:
 
-## Privacy
-- No webcam capture
-- No audio capture
-- No server upload
-- Records only this app's DOM events in browser-local storage
+- Global Session Replay
+- Mood + Motion Detector (on-device camera processing)
+- Reading Mode with PDF/DOCX/TXT import
 
-## Routes
-- `/` Home: start/stop recording, session list, replay last session
-- `/replay/:id` Replay player with timeline controls
+Legacy root-level modules are kept untouched but are not part of the supported runtime.
 
-## Run Locally
+## Run
+
 ```bash
+cd apps/web
 npm install
 npm run dev
 ```
 
-App URL: `http://localhost:5173`
+## Supported Routes
 
-## Build
-```bash
-npm run build
-```
+- `/` Home
+- `/replay` Replay sessions and player
+- `/demo/mood-motion` Mood + motion scan + stress intervention
+- `/reading` Reading mode with import + ruler/bionic/TTS
+- `/settings` Minimal local settings
+
+## Demo Script
+
+1. Start replay from the top bar.
+2. Open `/reading`, upload a PDF or DOCX, turn on ruler, and start TTS.
+3. Open `/demo/mood-motion`, start camera, calibrate, and trigger stress/motion simulation.
+4. Confirm high stress triggers calming intervention (blank screen + 432Hz attempt).
+5. Stop replay and verify the full cross-route timeline in `/replay`.
+
+## Privacy
+
+- No video frames are uploaded or stored.
+- No raw audio is recorded or stored.
+- Replay and detectors store only derived values and timestamps.
