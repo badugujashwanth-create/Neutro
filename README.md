@@ -1,6 +1,6 @@
 # Neutro (Focused Demo Build)
 
-> **Status: Prototype** — The web build succeeds; lint blockers and unverified desktop/cloud components are documented in `docs/TEST_REPORT.md`.
+> **Status: Prototype** — Both web trees now pass lint, type checking, and production builds; desktop, camera, and cloud paths remain outside the verified scope.
 
 [![Watch the Neutro demo](docs/demo/demo-thumbnail.png)](docs/demo/demo.webm)
 
