@@ -1,5 +1,13 @@
 # Neutro (Focused Demo Build)
 
+> **Status: Prototype** — The web build succeeds; lint blockers and unverified desktop/cloud components are documented in `docs/TEST_REPORT.md`.
+
+[![Watch the Neutro demo](docs/demo/demo-thumbnail.png)](docs/demo/demo.webm)
+
+> Watch the locally recorded overview of the canonical focused web demo.
+
+Neutro explores privacy-aware tools that help users review digital sessions, reduce reading friction, and respond to cognitive load without presenting the prototype as clinical software.
+
 Canonical runnable app: `apps/web`
 
 This repo is intentionally scoped to three demo features only:
