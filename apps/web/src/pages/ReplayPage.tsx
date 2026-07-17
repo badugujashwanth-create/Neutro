@@ -34,22 +34,16 @@ export function ReplayPage() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const replayerRef = useRef<Replayer | null>(null)
 
+  const resolvedSessionId = sessions.some((session) => session.id === selectedSessionId)
+    ? selectedSessionId
+    : sessions[0]?.id ?? ''
+
   const selectedSession = useMemo<ReplayBundle | null>(
-    () => sessions.find((session) => session.id === selectedSessionId) ?? null,
-    [selectedSessionId, sessions],
+    () => sessions.find((session) => session.id === resolvedSessionId) ?? null,
+    [resolvedSessionId, sessions],
   )
 
   const durationMs = selectedSession?.durationMs ?? 0
-
-  useEffect(() => {
-    if (!sessions.length) {
-      setSelectedSessionId('')
-      return
-    }
-    if (!selectedSessionId || !sessions.some((session) => session.id === selectedSessionId)) {
-      setSelectedSessionId(sessions[0].id)
-    }
-  }, [selectedSessionId, sessions])
 
   useEffect(() => {
     if (!containerRef.current || !selectedSession) return
@@ -57,19 +51,17 @@ export function ReplayPage() {
     containerRef.current.innerHTML = ''
     const replayer = new Replayer(selectedSession.events, {
       root: containerRef.current,
-      speed,
+      speed: 1,
       skipInactive: true,
     })
     replayerRef.current = replayer
-    setCurrentMs(0)
-    setIsPlaying(false)
 
     return () => {
       replayer.pause()
       replayer.destroy()
       replayerRef.current = null
     }
-  }, [selectedSession, speed])
+  }, [selectedSession])
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -110,12 +102,34 @@ export function ReplayPage() {
 
   const onDeleteSession = async (id: string) => {
     await deleteReplayBundle(id)
+    if (id === resolvedSessionId) {
+      setSelectedSessionId('')
+      setCurrentMs(0)
+      setIsPlaying(false)
+      setSpeed(1)
+    }
     await refreshSessions()
   }
 
   const onClearAll = async () => {
     await clearReplayBundles()
+    setSelectedSessionId('')
+    setCurrentMs(0)
+    setIsPlaying(false)
+    setSpeed(1)
     await refreshSessions()
+  }
+
+  const onSelectSession = (id: string) => {
+    setSelectedSessionId(id)
+    setCurrentMs(0)
+    setIsPlaying(false)
+    setSpeed(1)
+  }
+
+  const onSpeedChange = (value: number) => {
+    setSpeed(value)
+    replayerRef.current?.setConfig({ speed: value })
   }
 
   return (
@@ -142,7 +156,7 @@ export function ReplayPage() {
           <div className="mt-3 space-y-2">
             {sessions.length === 0 && <p className="text-sm text-slate-400">No sessions yet. Start replay in the top bar.</p>}
             {sessions.map((session) => {
-              const selected = session.id === selectedSessionId
+              const selected = session.id === resolvedSessionId
               return (
                 <div
                   key={session.id}
@@ -151,7 +165,7 @@ export function ReplayPage() {
                   }`}
                 >
                   <button
-                    onClick={() => setSelectedSessionId(session.id)}
+                    onClick={() => onSelectSession(session.id)}
                     className="w-full text-left"
                   >
                   <p className="text-sm font-medium text-slate-100">{new Date(session.createdAt).toLocaleString()}</p>
@@ -192,7 +206,7 @@ export function ReplayPage() {
                   Speed
                   <select
                     value={speed}
-                    onChange={(event) => setSpeed(Number(event.target.value))}
+                    onChange={(event) => onSpeedChange(Number(event.target.value))}
                     className="ml-2 rounded-md border border-border bg-slate-900 px-2 py-1 text-slate-100"
                   >
                     <option value={0.5}>0.5x</option>
