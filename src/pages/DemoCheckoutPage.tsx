@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { TaxGuardInterceptor } from '../components/TaxGuardInterceptor.tsx'
 import { useCognitiveLoad } from '../components/CognitiveLoadProvider.tsx'
 import { useTaxGuard } from '../components/TaxGuardProvider.tsx'
-import { useToast } from '../components/ToastProvider.tsx'
+import { useToast } from '../components/useToast.ts'
 
 function bandStyles(band: 'green' | 'amber' | 'rose'): string {
   if (band === 'green') return 'bg-emerald-500/20 text-emerald-200'

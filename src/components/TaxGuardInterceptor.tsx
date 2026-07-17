@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { scanTransactionalContext } from '../lib/taxGuard/detection.ts'
 import { useCognitiveLoad } from './CognitiveLoadProvider.tsx'
 import { useTaxGuard } from './TaxGuardProvider.tsx'
-import { useToast } from './ToastProvider.tsx'
+import { useToast } from './useToast.ts'
 
 interface TaxGuardInterceptorProps {
   lockDurationHours?: number

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
-import { useToast } from '../components/ToastProvider'
+import { useToast } from '../components/useToast'
 import { isReplayRecording, startReplayRecording, stopReplayRecording } from '../lib/replay/recorder'
 import { clearReplayBundles, deleteReplayBundle, listReplayBundles, saveReplayBundle } from '../lib/replay/storage'
 import type { ReplayBundle } from '../types/replay'
@@ -31,7 +31,15 @@ export function HomePage() {
   }
 
   useEffect(() => {
-    void refreshSessions()
+    let active = true
+    void listReplayBundles().then((bundles) => {
+      if (!active) return
+      setSessions(bundles)
+      setLoading(false)
+    })
+    return () => {
+      active = false
+    }
   }, [])
 
   const onStart = () => {

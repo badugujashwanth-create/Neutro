@@ -34,6 +34,9 @@ export function ReplayPage() {
       setIsLoading(true)
       const replay = await getReplayBundle(id)
       setBundle(replay)
+      setCurrentMs(0)
+      setIsPlaying(false)
+      setSpeed(1)
       setIsLoading(false)
     }
 
@@ -46,13 +49,11 @@ export function ReplayPage() {
     containerRef.current.innerHTML = ''
     const replayer = new Replayer(bundle.events, {
       root: containerRef.current,
-      speed,
+      speed: 1,
       skipInactive: true,
     })
 
     replayerRef.current = replayer
-    setCurrentMs(0)
-    setIsPlaying(false)
 
     return () => {
       replayer.pause()

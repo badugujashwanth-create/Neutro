@@ -25,31 +25,35 @@ export function StressInterventionOverlay({
   onStop,
   onRetryAudio,
 }: StressInterventionOverlayProps) {
-  const [startedAt, setStartedAt] = useState<number | null>(null)
+  if (!active) return null
+
+  return (
+    <ActiveStressInterventionOverlay
+      stressScore={stressScore}
+      audioState={audioState}
+      onStop={onStop}
+      onRetryAudio={onRetryAudio}
+    />
+  )
+}
+
+function ActiveStressInterventionOverlay({
+  stressScore,
+  audioState,
+  onStop,
+  onRetryAudio,
+}: Omit<StressInterventionOverlayProps, 'active'>) {
   const [elapsedMs, setElapsedMs] = useState(0)
 
   useEffect(() => {
-    if (!active) {
-      setStartedAt(null)
-      setElapsedMs(0)
-      return
-    }
-    const now = Date.now()
-    setStartedAt(now)
-    setElapsedMs(0)
-  }, [active])
-
-  useEffect(() => {
-    if (!active || startedAt === null) return
+    const startedAt = Date.now()
     const interval = window.setInterval(() => {
       setElapsedMs(Date.now() - startedAt)
     }, 200)
     return () => window.clearInterval(interval)
-  }, [active, startedAt])
+  }, [])
 
   const timerText = useMemo(() => formatDuration(elapsedMs), [elapsedMs])
-
-  if (!active) return null
 
   return (
     <div className="fixed inset-0 z-[120] bg-black/98">

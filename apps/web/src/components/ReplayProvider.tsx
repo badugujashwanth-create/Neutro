@@ -25,8 +25,14 @@ export function ReplayProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    void refreshSessions()
-  }, [refreshSessions])
+    let active = true
+    void listReplayBundles().then((bundles) => {
+      if (active) setSessions(bundles)
+    })
+    return () => {
+      active = false
+    }
+  }, [])
 
   const startRecording = useCallback(async () => {
     const started = startReplayRecording()
