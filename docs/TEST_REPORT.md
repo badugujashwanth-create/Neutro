@@ -2,7 +2,7 @@
 
 Audit date: 2026-07-21
 
-Branch: `phase3-neutro-completion`
+Branch: merged to `main` through PR [#2](https://github.com/badugujashwanth-create/Neutro/pull/2)
 
 Canonical app: `apps/web`
 
@@ -28,6 +28,6 @@ Canonical app: `apps/web`
 | Media review | Pass | Thumbnail and 10 sampled timeline positions were visually inspected; camera, file picker, accounts, notifications, and private data were absent |
 | Audio presence | Pass | Narration measured −20.4 dB mean and −0.2 dB maximum; caption final cue ends before both media durations |
 
-Public pull-request CI, merge, release assets, and logged-out URLs remain release-coordination checks and will be recorded in `PROJECT_COMPLETION_REPORT.md`.
+Clean-install GitHub CI passed in 44 seconds. The merged commit, v0.6.0 release, uploaded asset metadata, checksums, and logged-out HTTP 200 checks are recorded in [PROJECT_COMPLETION_REPORT.md](../PROJECT_COMPLETION_REPORT.md).
 
 Warnings, failures, and excluded environments will remain explicit even when other checks pass.

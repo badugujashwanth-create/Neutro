@@ -2,7 +2,7 @@
 
 ## Status
 
-**Release candidate on `phase3-neutro-completion`.** The implementation, local verification, and replacement media qualify for pull-request review. Public release status remains pending until CI, merge, release assets, and logged-out checks agree.
+**Complete on `main` and released as [v0.6.0](https://github.com/badugujashwanth-create/Neutro/releases/tag/v0.6.0).** Implementation, local verification, clean-install CI, merge, release assets, and logged-out delivery checks agree.
 
 ## Ground truth
 
@@ -72,13 +72,14 @@
 
 - `demo.mp4`: `63D54E350B89FBB4A36C9464DAF963DAC8D1F9D2B36ED5632EF5DAAB2CA795FD`
 - `demo.webm`: `9662BB67F6AAA46562D1EB9A4A767D5356B39ECCC689A051095403816BECEA6C`
-- `demo-captions.vtt`: `284540A30AC09002959D8BE20C79829265F6792F68C42DC708673FB6223CE4BC`
+- `demo-captions.vtt`: `793743C620721543E562D304D278C5BA2DB53BC1F515BD865E65F5EC2A190F5F`
 - `demo-thumbnail.png`: `464DA60FCA2CFF728869E317C0BBD70C1C39863012DDE0956DC0B717A7A29546`
 
 ## Release coordination
 
-- Pull request: pending
-- CI: pending
-- Merge: pending
-- Release: target `v0.6.0`
-- Logged-out asset verification: pending
+- Pull request: [#2 — merged](https://github.com/badugujashwanth-create/Neutro/pull/2)
+- Clean-install CI: [pass in 44 seconds](https://github.com/badugujashwanth-create/Neutro/actions/runs/29846496418/job/88688320768)
+- Squash merge: [`3aca7d0`](https://github.com/badugujashwanth-create/Neutro/commit/3aca7d03d41c134733fcb68aeb518692ec2c5268)
+- Release: [v0.6.0](https://github.com/badugujashwanth-create/Neutro/releases/tag/v0.6.0)
+- Release assets: MP4, WebM, VTT captions, and PNG poster all uploaded with GitHub API media types and SHA-256 digests matching the committed files.
+- Logged-out check: release page, four asset download URLs, and the public report returned HTTP 200. GitHub's release CDN intentionally serves asset downloads as `application/octet-stream`; the release API records `video/mp4`, `video/webm`, `text/vtt`, and `image/png` respectively.
