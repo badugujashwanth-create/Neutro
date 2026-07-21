@@ -1,16 +1,31 @@
 WEBVTT
 
-00:00.000 --> 00:05.000
-Neutro
+00:00.000 --> 00:17.000
+Neutro is a local-first prototype for user-controlled interface adaptation. It changes presentation only from explicit choices and makes no medical claim.
 
-00:05.000 --> 00:15.000
-The problem, intended user, and starting point.
+00:17.000 --> 00:38.500
+The Adaptation Studio starts with three transparent profiles: Balanced, Reading focus, and Low stimulation.
 
-00:15.000 --> 00:35.000
-A walkthrough of the primary workflow using safe demonstration data.
+00:38.500 --> 00:58.500
+Reading focus increases text spacing and simplifies the content width. Low stimulation softens contrast, reduces motion, and removes decorative intensity.
 
-00:35.000 --> 00:46.000
-Architecture, technology boundaries, and verified behavior.
+00:58.500 --> 01:26.000
+Every dimension remains editable: typeface, size, line and letter spacing, contrast, motion, sensory load, layout, and focus assistance. A manual change becomes a Custom profile.
 
-00:46.000 --> 00:55.000
-Current status, known limitation, and repository owner badugujashwanth-create.
+01:26.000 --> 01:48.000
+The preview changes immediately. The explanation panel describes each active rule in plain language, including whether reduced motion comes from Neutro or the operating system.
+
+01:48.000 --> 02:10.000
+Preferences persist only in this browser. Reloading restores the custom state; Reset returns to a safe Balanced profile that follows system motion.
+
+02:10.000 --> 02:28.500
+Native labeled controls, visible keyboard focus, and a live status summary support keyboard and screen-reader navigation.
+
+02:28.500 --> 02:50.500
+Reading, Local Replay, and the Camera Signal prototype are optional labs. Replay and camera are off by default, and camera heuristics never change adaptation preferences.
+
+02:50.500 --> 03:08.000
+The verified core is deterministic local adaptation with tested rules and no account or cloud dependency. The current limitation is browser-local persistence, not cross-device personalization.
+
+03:08.000 --> 03:14.500
+Neutro by badugujashwanth-create. User choice stays in control.

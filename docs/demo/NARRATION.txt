@@ -1,0 +1,15 @@
+Neutro is a local-first prototype for user-controlled interface adaptation. It starts from a simple principle: the person using an interface should decide how that interface changes. Neutro does not diagnose, treat, recommend a health profile, or infer a condition. The primary workflow needs no account, camera, uploaded data, or cloud service.
+
+The Adaptation Studio offers three transparent starting profiles. Balanced keeps familiar typography and contrast while following the operating system motion setting. Reading focus increases text size and spacing, uses a more readable typeface, narrows the content area, and strengthens focus assistance. Low stimulation softens contrast, removes decorative intensity, reduces motion, and simplifies the layout. These are presentation presets, not medical categories, and every setting remains visible.
+
+Now I will override the preset. Typeface, text size, line spacing, letter spacing, contrast, motion, sensory load, layout simplification, and focus assistance can all be controlled independently. The moment a setting changes, Neutro labels the state Custom. That makes the source of the change explicit: this is a direct user choice, not an automatic guess based on behavior or a camera signal.
+
+The live preview makes each choice visible without leaving the page. Alongside it, the explanation panel describes every active transformation in plain language. It distinguishes reduced motion selected in Neutro from reduced motion requested by the operating system. Neutro has no option that forces full motion, so a system accessibility preference is never overridden.
+
+The focus target demonstrates the stronger keyboard outline. The controls use native labels, field sets, pressed states, and an announced status summary for assistive technology. When the page reloads, the custom profile returns from versioned browser storage. Invalid storage is tested to recover to safe defaults. Reset brings the complete state back to Balanced rather than leaving hidden overrides behind.
+
+The other routes are optional local tools, not requirements for adaptation. The Reading workspace can process a user-selected document locally. Session Replay is off until the user presses Start and its data stays in browser storage. The Camera Signal lab is an experimental, unvalidated prototype. Camera permission and a Start action are required, frames are processed on device, its labels are not emotion recognition, and it cannot change adaptation preferences. This walkthrough leaves the camera off.
+
+The verified product claim is intentionally narrow: Neutro turns explicit preferences into deterministic, explainable presentation changes in one browser. Automated tests cover presets, manual overrides, numeric bounds, malformed storage recovery, explanations, reset behavior, and motion boundaries. Desktop and mobile browser checks verify the primary workflow, persistence, focus, and overflow. The current limitation is equally clear: there is no account, cloud sync, clinical validation, or cross-device personalization.
+
+Neutro is a portfolio prototype by badugujashwanth-create. User choice stays in control.

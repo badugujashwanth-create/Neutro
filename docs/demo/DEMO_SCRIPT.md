@@ -1,16 +1,20 @@
 # Neutro demo script
 
-**Target length:** 60–90 seconds  
-**Format:** Browser/desktop  
-**Data:** synthetic, repository-provided demo data, or public non-personal examples only
+**Primary target:** at least 3 minutes
 
-## Walkthrough
+**Supporting cut:** no more than 90 seconds
 
-1. **Title (0–5s):** Show “Neutro” and its one-sentence problem statement.
-2. **Starting state (5–15s):** Show the clean entry point and identify the intended user.
-3. **Primary workflow (15–55s):** Open the focused demo; show one cognitive-safety or replay workflow; pause on locally stored results; explain which desktop and Supabase features are optional.
-4. **Architecture (55–75s):** Show the architecture guide and name the main runtime boundaries.
-5. **Close (75–90s):** Display the project name, badugujashwanth-create, current status, and one honest limitation.
+**Format:** 1280×720 browser recording with narration and captions
 
-Do not show environment files, tokens, browser bookmarks, notifications, real user accounts, or private URLs. Do not edit the footage to imply an integration succeeded when it did not.
+**Data:** built-in deterministic content only; no accounts, personal files, camera, environment values, or private URLs
 
+## Primary walkthrough
+
+1. **Product thesis (0:00–0:25):** Introduce Neutro as a user-controlled presentation adaptation prototype. State the local-only and non-medical boundaries.
+2. **Starting profiles (0:25–1:05):** Open Adapt and compare Balanced, Reading focus, and Low stimulation. Point out the visible preview and explanation changes.
+3. **Manual control (1:05–2:05):** Adjust typeface, text size, line spacing, contrast, motion, sensory load, layout, and focus assistance. Show that the profile becomes Custom.
+4. **Accessibility and persistence (2:05–2:40):** Navigate controls with the keyboard, focus the preview target, reload, and confirm the settings remain. Reset to Balanced.
+5. **Optional tools and boundaries (2:40–3:05):** Briefly identify Reading, Local Replay, and Camera Signal as optional labs. Do not enable camera or imply a heuristic is emotion recognition.
+6. **Evidence and limitation (3:05–3:20):** Show the completion report and test evidence. Close with the local-browser-only limitation and repository owner.
+
+Do not show environment files, tokens, browser bookmarks, notifications, real user accounts, or private URLs. Do not edit footage to imply an optional integration succeeded when it did not.

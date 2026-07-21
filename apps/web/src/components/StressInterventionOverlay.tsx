@@ -59,16 +59,16 @@ function ActiveStressInterventionOverlay({
     <div className="fixed inset-0 z-[120] bg-black/98">
       <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-5 px-6 text-center">
         <p className="rounded-full border border-cyan-300/40 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
-          Calming Mode Active
+          User-started pause overlay
         </p>
         <h2 className="text-3xl font-semibold text-slate-100">Pause and reset</h2>
         <p className="text-sm text-slate-300">
-          Stress proxy is high. Screen is intentionally blanked to interrupt overload momentum.
+          This optional blank screen and tone were started manually. Stop whenever you choose; no medical benefit is claimed.
         </p>
 
         <div className="grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-slate-700/70 bg-slate-950/60 p-4">
-            <p className="text-xs uppercase tracking-wide text-slate-400">Stress</p>
+            <p className="text-xs uppercase tracking-wide text-slate-400">Prototype signal</p>
             <p className="mt-1 text-2xl font-semibold text-rose-300">{stressScore}/100</p>
           </div>
           <div className="rounded-xl border border-slate-700/70 bg-slate-950/60 p-4">
@@ -88,7 +88,7 @@ function ActiveStressInterventionOverlay({
             onClick={onStop}
             className="rounded-lg border border-rose-300/60 px-4 py-2 text-sm font-medium text-rose-100 hover:bg-rose-500/20"
           >
-            Stop Calming Mode
+            Stop pause overlay
           </button>
           {audioState.blocked && (
             <button
