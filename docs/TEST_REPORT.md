@@ -1,32 +1,33 @@
 # Test report
 
-Audited on 2026-07-17 using the checked-out `portfolio-polish` branch on Windows.
+Audit date: 2026-07-21
 
-| Command | Result | Evidence / notes |
+Branch: `phase3-neutro-completion`
+
+Canonical app: `apps/web`
+
+## Targeted implementation evidence
+
+| Check | Result | Evidence |
 |---|---|---|
-| `npm ci` | Pass | 256 packages installed |
-| `npm run build` | Pass | TypeScript and Vite production build completed |
-| `npm ci` in `apps/web` | Pass | 286 packages installed for the canonical documented app |
-| `npm run build` in `apps/web` | Pass | Canonical app built; Vite warned about chunks larger than 500 kB |
-| `npm run lint` | Pass | ESLint completed with zero errors and zero warnings across both trees |
-| Type checking | Pass | Both production build commands completed their `tsc -b` phase |
-| Canonical preview startup | Pass | Vite preview returned HTTP 200 with the expected root element |
-| Formatter | Not run | No formatter command or formatter dependency is configured |
-| `Automated tests` | Not run | No test script is configured |
+| Changed-file ESLint | Pass | Adaptation core, provider, pages, navigation, and camera-boundary edits pass with zero findings |
+| Adaptation rules | Pass | 6 Vitest tests cover deterministic presets, custom overrides, bounds, malformed storage, partial persistence, explanations, reset, and motion boundaries |
+| Canonical TypeScript/build | Pass | `tsc -b` and Vite production build completed after the primary workflow was added |
+| Canonical dependency audit | Pass | Initial advisories were repaired with non-forced updates; immediate rerun reported 0 vulnerabilities |
 
-## Finding classification and correction
+## Final repository gate
 
-| Finding | Classification | Correction |
+| Check | Result | Evidence |
 |---|---|---|
-| Initial replay loads in two providers | Unsafe lifecycle pattern | Load storage in a cancellable promise callback instead of invoking state-setting helpers synchronously from effects |
-| Stress overlay reset | Actual lifecycle bug | Mount a dedicated active overlay so its timer state resets through component lifecycle |
-| Session selection effect | Derived-state/code-quality issue | Resolve the selected session during render and reset controls in explicit user actions |
-| Two replayer reset effects | Unsafe pattern | Keep external-player construction in effects and move React state resets to async/user callbacks |
-| Toast hook exported with provider component | Fast Refresh configuration issue | Move the context hook to a non-component module |
-| Replay speed dependency | Actual behavioral warning | Configure speed explicitly through the player API instead of recreating the player on every speed change |
+| Canonical full gate | Pass | ESLint: 0 findings; Vitest: 6/6; TypeScript/Vite build: pass; main JS chunk reduced from 570.00 kB to 336.11 kB through optional-route splitting |
+| Legacy CI regression gate | Pass | Root ESLint and TypeScript/Vite production build completed |
+| Dependency audits | Pass | Both lockfiles report 0 known vulnerabilities at `--audit-level=low` after non-forced repairs |
+| Desktop production-preview workflow | Pass | Playwright verified profile selection, document effects, manual Custom state, explanation, reload persistence, and reset |
+| Mobile production-preview workflow | Pass | 390×844 route had no horizontal overflow and exposed a visible keyboard focus target |
+| Narrated walkthrough | Pass | MP4: H.264/AAC, 1280×720, 3:15.92, 4,999,311 bytes; WebM: VP8/Opus, 1280×720, 3:14.39, 13,897,506 bytes |
+| Media review | Pass | Thumbnail and 10 sampled timeline positions were visually inspected; camera, file picker, accounts, notifications, and private data were absent |
+| Audio presence | Pass | Narration measured −20.4 dB mean and −0.2 dB maximum; caption final cue ends before both media durations |
 
-## Overall status
+Public pull-request CI, merge, release assets, and logged-out URLs remain release-coordination checks and will be recorded in `PROJECT_COMPLETION_REPORT.md`.
 
-Verified for lint, type checking, two production builds, and canonical preview startup. No automated test script exists, and Vite still reports a large canonical bundle chunk.
-
-Warnings and missing checks remain limitations, even when another check passes.
+Warnings, failures, and excluded environments will remain explicit even when other checks pass.

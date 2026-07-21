@@ -23,7 +23,6 @@ const MOTION_SPIKE_MS = 5000
 const LABEL_HOLD_MS = 900
 const HIGH_STRESS_MARKER_THRESHOLD = 70
 const INTERVENTION_ENTER_THRESHOLD = 72
-const INTERVENTION_ENTER_MS = 1500
 const INTERVENTION_EXIT_THRESHOLD = 45
 const INTERVENTION_EXIT_MS = 10_000
 const CALM_TONE_GAIN = 0.03
@@ -380,14 +379,6 @@ export function MoodMotionBlock() {
       }
 
       if (
-        !interventionActiveRef.current &&
-        highStressSinceRef.current !== null &&
-        now - highStressSinceRef.current >= INTERVENTION_ENTER_MS
-      ) {
-        startIntervention('Stress sustained above threshold')
-      }
-
-      if (
         interventionActiveRef.current &&
         lowStressSinceRef.current !== null &&
         now - lowStressSinceRef.current >= INTERVENTION_EXIT_MS
@@ -409,7 +400,7 @@ export function MoodMotionBlock() {
       setNods(motion.nodCount)
       setShakes(motion.shakeCount)
     },
-    [addMarker, baseline, isRecording, startIntervention, stopIntervention],
+    [addMarker, baseline, isRecording, stopIntervention],
   )
 
   useEffect(() => {
@@ -472,7 +463,7 @@ export function MoodMotionBlock() {
     <>
       <section className="rounded-2xl border border-border bg-panel/85 p-5 shadow-xl shadow-black/20">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-xl font-semibold text-slate-100">Mood &amp; Motion Detector</h2>
+          <h2 className="text-xl font-semibold text-slate-100">Camera Signal Prototype</h2>
           <div className="flex items-center gap-2">
             <span className="rounded-full border border-emerald-300/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200">
               On-device processing
@@ -502,20 +493,19 @@ export function MoodMotionBlock() {
               <p className="rounded-lg border border-rose-300/35 bg-rose-500/10 px-3 py-2 text-sm text-rose-100">{errorMessage}</p>
             )}
             <p className="text-xs text-slate-400">
-              Stress is a non-medical estimate from facial tension. Motion score reflects head/face movement
-              intensity.
+              Prototype labels are unvalidated mappings from face-landmark movement. They do not identify emotion, stress, or a health state.
             </p>
           </div>
 
           <div className="space-y-4">
             <div className="rounded-xl border border-border bg-slate-950/50 p-4">
-              <p className="text-xs uppercase tracking-wide text-slate-400">Mood</p>
+              <p className="text-xs uppercase tracking-wide text-slate-400">Heuristic label</p>
               <p className={`mt-1 text-3xl font-bold ${moodColor(moodLabel)}`}>{moodLabel}</p>
             </div>
 
             <div className="rounded-xl border border-border bg-slate-950/50 p-4">
               <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-wide text-slate-400">Stress Meter</p>
+                <p className="text-xs uppercase tracking-wide text-slate-400">Prototype signal</p>
                 <p className="text-sm font-semibold text-slate-100">{stressScore}/100</p>
               </div>
               <div className="mt-2 h-3 rounded-full bg-slate-800">
@@ -597,21 +587,28 @@ export function MoodMotionBlock() {
                   stressSpike ? 'border-rose-200/60 bg-rose-500/20 text-rose-100' : 'border-rose-300/50 text-rose-100 hover:bg-rose-500/20'
                 }`}
               >
-                {stressSpike ? 'Stress Spike Active' : 'Simulate Stress +30'}
+                {stressSpike ? 'Signal Boost Active' : 'Simulate Signal +30'}
               </button>
               <button
                 onClick={triggerMotionSpike}
-                className={`col-span-2 rounded-lg border px-3 py-2 text-sm font-medium ${
+                className={`rounded-lg border px-3 py-2 text-sm font-medium ${
                   motionSpike ? 'border-amber-200/60 bg-amber-500/20 text-amber-100' : 'border-amber-300/50 text-amber-100 hover:bg-amber-500/20'
                 }`}
               >
                 {motionSpike ? 'Motion Jitter Active' : 'Simulate Motion Jitter'}
               </button>
+              <button
+                onClick={() => startIntervention('Started manually in the camera signal lab')}
+                disabled={intervention.active}
+                className="rounded-lg border border-fuchsia-300/50 px-3 py-2 text-sm font-medium text-fuchsia-100 hover:bg-fuchsia-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Open pause overlay
+              </button>
             </div>
 
             {intervention.active && (
               <p className="rounded-lg border border-rose-300/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
-                Calming mode running. {intervention.reason}
+                User-started pause overlay running. {intervention.reason}
               </p>
             )}
           </div>

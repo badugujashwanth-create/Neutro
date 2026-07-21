@@ -25,7 +25,7 @@ function markerColor(marker: ReplayMarker): string {
 }
 
 export function ReplayPage() {
-  const { sessions, refreshSessions } = useReplay()
+  const { isRecording, sessions, startRecording, stopRecording, refreshSessions } = useReplay()
   const [selectedSessionId, setSelectedSessionId] = useState<string>('')
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentMs, setCurrentMs] = useState(0)
@@ -137,24 +137,23 @@ export function ReplayPage() {
       <section className="rounded-2xl border border-border bg-panel/80 p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-semibold text-slate-100">Replay Sessions</h1>
-            <p className="mt-1 text-sm text-slate-300">Play and scrub recorded journeys across the full application.</p>
+            <h1 className="text-2xl font-semibold text-slate-100">Local Replay Lab</h1>
+            <p className="mt-1 text-sm text-slate-300">Optionally record and inspect journeys stored only in this browser.</p>
           </div>
-          <button
-            onClick={() => void onClearAll()}
-            disabled={sessions.length === 0}
-            className="rounded-md border border-rose-300/60 px-3 py-1.5 text-sm text-rose-100 hover:bg-rose-500/20 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Clear all sessions
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button onClick={() => void startRecording()} disabled={isRecording} className="rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-50">Start recording</button>
+            <button onClick={() => void stopRecording()} disabled={!isRecording} className="rounded-md border border-amber-300/60 px-3 py-1.5 text-sm text-amber-100 hover:bg-amber-500/20 disabled:cursor-not-allowed disabled:opacity-50">Stop recording</button>
+            <button onClick={() => void onClearAll()} disabled={sessions.length === 0} className="rounded-md border border-rose-300/60 px-3 py-1.5 text-sm text-rose-100 hover:bg-rose-500/20 disabled:cursor-not-allowed disabled:opacity-50">Clear all sessions</button>
+          </div>
         </div>
+        <p className="mt-3 text-xs text-slate-400">Recording status: {isRecording ? 'active' : 'off'}. Recording starts only after you press Start.</p>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
         <aside className="rounded-2xl border border-border bg-panel/80 p-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-300">Session List</h2>
           <div className="mt-3 space-y-2">
-            {sessions.length === 0 && <p className="text-sm text-slate-400">No sessions yet. Start replay in the top bar.</p>}
+            {sessions.length === 0 && <p className="text-sm text-slate-400">No sessions yet. Use Start recording above, move through the app, then return and stop.</p>}
             {sessions.map((session) => {
               const selected = session.id === resolvedSessionId
               return (

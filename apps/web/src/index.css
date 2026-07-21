@@ -10,6 +10,9 @@
   --cursor-dot: #ffffff;
   --cursor-ring: rgba(167, 139, 250, 0.5);
   --cursor-glow: rgba(167, 139, 250, 0.32);
+  --adapt-font-scale: 1;
+  --adapt-line-height: 1.6;
+  --adapt-letter-spacing: 0em;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +27,85 @@ body {
   margin: 0;
   min-width: 320px;
   background: radial-gradient(circle at top, #1a1c2a, #12131a 38%);
+  font-size: calc(1rem * var(--adapt-font-scale));
+  line-height: var(--adapt-line-height);
+  letter-spacing: var(--adapt-letter-spacing);
+}
+
+:root[data-adapt-font='readable'] body {
+  font-family: Atkinson Hyperlegible, Verdana, Tahoma, ui-sans-serif, system-ui, sans-serif;
+}
+
+:root[data-adapt-font='mono'] body {
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+}
+
+:root[data-adapt-contrast='high'] {
+  color: #ffffff;
+  background-color: #050609;
+}
+
+:root[data-adapt-contrast='high'] body {
+  background: #050609;
+}
+
+:root[data-adapt-contrast='high'] .bg-panel\/80,
+:root[data-adapt-contrast='high'] .bg-panel\/85 {
+  background-color: rgba(8, 10, 16, 0.98);
+}
+
+:root[data-adapt-contrast='high'] .border-border {
+  border-color: #94a3b8;
+}
+
+:root[data-adapt-contrast='soft'] body {
+  background: #171922;
+}
+
+:root[data-adapt-contrast='soft'] .text-slate-100 {
+  color: #d8dbe5;
+}
+
+:root[data-adapt-contrast='soft'] .text-indigo-300,
+:root[data-adapt-contrast='soft'] .text-cyan-300,
+:root[data-adapt-contrast='soft'] .text-amber-300 {
+  color: #b9bfd0;
+}
+
+:root[data-adapt-sensory='low'] body {
+  background-image: none;
+}
+
+:root[data-adapt-sensory='low'] * {
+  box-shadow: none !important;
+}
+
+:root[data-adapt-layout='simple'] .adaptation-workspace {
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+:root[data-adapt-layout='simple'] .adapt-secondary {
+  display: none;
+}
+
+:root[data-adapt-focus='strong'] :focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 4px;
+}
+
+:root[data-adapt-focus='strong'] .adapt-focus-target:focus {
+  background-color: rgba(251, 191, 36, 0.12);
+  border-color: #fbbf24;
+}
+
+:root[data-adapt-motion='reduced'] *,
+:root[data-adapt-motion='reduced'] *::before,
+:root[data-adapt-motion='reduced'] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }
 
 .cursor-effect-dot {
