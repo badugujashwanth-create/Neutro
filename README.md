@@ -1,6 +1,6 @@
 # Neutro
 
-> **Release candidate:** a local-first, user-controlled interface adaptation prototype. The canonical app is `apps/web`; legacy root modules are retained but unsupported.
+> **Released as [v0.6.0](https://github.com/badugujashwanth-create/Neutro/releases/tag/v0.6.0):** a local-first, user-controlled interface adaptation prototype. The canonical app is `apps/web`; legacy root modules are retained but unsupported.
 
 [![Watch the Neutro adaptation walkthrough](docs/demo/demo-thumbnail.png)](docs/demo/demo.mp4)
 
