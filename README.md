@@ -2,7 +2,9 @@
 
 > **Status: Prototype** — Both web trees now pass lint, type checking, and production builds; desktop, camera, and cloud paths remain outside the verified scope.
 
-[![Watch the Neutro demo](docs/demo/demo-thumbnail.png)](docs/demo/demo.webm)
+[![Watch the Neutro demo](docs/demo/demo-thumbnail.png)](https://jashwanth-portfolio-ten.vercel.app/work/neutro/)
+
+[Open MP4](https://jashwanth-portfolio-ten.vercel.app/media/neutro/demo.mp4) · [Download WebM](https://jashwanth-portfolio-ten.vercel.app/media/neutro/demo.webm) · [Captions](https://jashwanth-portfolio-ten.vercel.app/media/neutro/demo-captions.vtt)
 
 > Watch the locally recorded overview of the canonical focused web demo.
 
